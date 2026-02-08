@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react";
-import { mapearRawgDetalleAUi, rawgDetalleDeJuegoMockPorId, rawgListaDeJuegosMock } from "./rawg-mock.utils";
+import { useEffect, useMemo, useState } from "react";
+import { listarJuegosRawg, obtenerJuegoRawgPorId } from "../../../../../service/rawg/index.js";
+import { mapearRawgDetalleAUi } from "./rawg-ui.mapper.js";
 
 const pcUsuarioInicial = {
   cpu: "",
@@ -18,18 +19,62 @@ function normalizarNumero(valor, fallback) {
 }
 
 export function useGamePcCompare() {
-  const listaDeJuegos = rawgListaDeJuegosMock.results.map((juego) => ({
-    id: juego.id,
-    nombre: juego.name,
-  }));
-
-  const [juegoIdSeleccionado, setJuegoIdSeleccionado] = useState(listaDeJuegos[0]?.id ?? 0);
+  const [listaDeJuegos, setListaDeJuegos] = useState([]);
+  const [juegoIdSeleccionado, setJuegoIdSeleccionado] = useState(0);
+  const [rawgDetalle, setRawgDetalle] = useState(null);
+  const [isCargandoRawg, setIsCargandoRawg] = useState(false);
+  const [errorRawg, setErrorRawg] = useState("");
   const [pcUsuario, setPcUsuario] = useState(pcUsuarioInicial);
   const [isCopiando, setIsCopiando] = useState(false);
   const [mensajeCopia, setMensajeCopia] = useState("");
 
-  const rawgDetalle = rawgDetalleDeJuegoMockPorId[juegoIdSeleccionado] ?? null;
   const juegoUi = useMemo(() => (rawgDetalle ? mapearRawgDetalleAUi(rawgDetalle) : null), [rawgDetalle]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    (async () => {
+      try {
+        setIsCargandoRawg(true);
+        setErrorRawg("");
+        const data = await listarJuegosRawg({ pageSize: 25, ordering: "-added", signal: controller.signal });
+        const juegos = (data?.results ?? []).map((juego) => ({ id: juego.id, nombre: juego.name }));
+        setListaDeJuegos(juegos);
+        setJuegoIdSeleccionado((prev) => prev || juegos[0]?.id || 0);
+      } catch (e) {
+        if (controller.signal.aborted) return;
+        setErrorRawg(e?.message || "No se pudo cargar RAWG.");
+      } finally {
+        if (!controller.signal.aborted) setIsCargandoRawg(false);
+      }
+    })();
+
+    return () => controller.abort();
+  }, []);
+
+  useEffect(() => {
+    if (!juegoIdSeleccionado) {
+      setRawgDetalle(null);
+      return;
+    }
+
+    const controller = new AbortController();
+    (async () => {
+      try {
+        setIsCargandoRawg(true);
+        setErrorRawg("");
+        const detalle = await obtenerJuegoRawgPorId({ juegoId: juegoIdSeleccionado, signal: controller.signal });
+        setRawgDetalle(detalle ?? null);
+      } catch (e) {
+        if (controller.signal.aborted) return;
+        setErrorRawg(e?.message || "No se pudo cargar el detalle del juego.");
+      } finally {
+        if (!controller.signal.aborted) setIsCargandoRawg(false);
+      }
+    })();
+
+    return () => controller.abort();
+  }, [juegoIdSeleccionado]);
 
   const jsonParaGemini = useMemo(() => {
     const payload = {
@@ -111,6 +156,8 @@ export function useGamePcCompare() {
     jsonParaGemini,
     isCopiando,
     mensajeCopia,
+    isCargandoRawg,
+    errorRawg,
     onCambiarJuegoId,
     onCambiarPcCampo,
     onCopiarJson,

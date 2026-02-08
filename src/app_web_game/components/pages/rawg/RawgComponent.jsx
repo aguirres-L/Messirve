@@ -1,7 +1,11 @@
 import HeaderComponent from "../home/component_home/Header.jsx"
+import FooterComponent from "../home/component_home/FooterComponent.jsx"
 import { Link } from "react-router-dom"
+import { useRawgSearch } from "./useRawgSearch.js"
 
 export default function RawgComponent() {
+  const { termino, setTermino, resultados, isCargando, error } = useRawgSearch()
+
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
       <HeaderComponent />
@@ -116,6 +120,76 @@ export default function RawgComponent() {
             </ul>
           </section>
 
+          <section className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-5" aria-label="Búsqueda en RAWG">
+            <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div className="space-y-1">
+                <h2 className="text-base font-semibold">Explorar juegos (RAWG API)</h2>
+                <p className="text-sm text-white/70">
+                  Esta búsqueda consulta la API oficial de RAWG. Se mantiene atribución visible y enlace activo a RAWG.io.
+                </p>
+              </div>
+              <a
+                href="https://rawg.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-semibold text-white underline underline-offset-4 hover:text-white/90"
+              >
+                RAWG.io
+              </a>
+            </div>
+
+            <div className="mt-4 flex flex-col gap-2">
+              <label className="text-sm font-medium text-white/80" htmlFor="rawg-search">
+                Buscar
+              </label>
+              <input
+                id="rawg-search"
+                value={termino}
+                onChange={(e) => setTermino(e.target.value)}
+                placeholder='Ej: "GTA", "Cyberpunk", "Elden Ring"...'
+                className="w-full rounded-xl border border-white/10 bg-black px-4 py-3 text-sm text-white placeholder:text-white/40 outline-none focus:ring-2 focus:ring-white/20"
+              />
+              {error ? <p className="text-sm text-red-300">{error}</p> : null}
+              {isCargando ? <p className="text-sm text-white/60">Buscando...</p> : null}
+            </div>
+
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {resultados.map((juego) => (
+                <article
+                  key={juego.id}
+                  className="overflow-hidden rounded-2xl border border-white/10 bg-black/40"
+                >
+                  {juego.background_image ? (
+                    <img
+                      src={juego.background_image}
+                      alt={juego.name}
+                      className="h-36 w-full object-cover"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="h-36 w-full bg-white/5" />
+                  )}
+
+                  <div className="p-4">
+                    <div className="text-sm font-semibold text-white">{juego.name}</div>
+                    <div className="mt-1 text-xs text-white/60">
+                      {juego.released ? `Lanzamiento: ${juego.released}` : "Fecha de lanzamiento: —"}
+                    </div>
+
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <span className="rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-xs text-white/70">
+                        Rating: {typeof juego.rating === "number" ? juego.rating.toFixed(2) : "—"}
+                      </span>
+                      <span className="rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-xs text-white/70">
+                        Metacritic: {juego.metacritic ?? "—"}
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+
           <div className="mt-8">
             <Link to="/" className="text-sm font-medium text-white/80 hover:text-white">
               Volver al inicio
@@ -123,6 +197,7 @@ export default function RawgComponent() {
           </div>
         </div>
       </main>
+      <FooterComponent />
     </div>
   );
 }

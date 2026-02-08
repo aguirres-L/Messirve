@@ -9,6 +9,8 @@ export default function ContainerComponent() {
     jsonParaGemini,
     isCopiando,
     mensajeCopia,
+    isCargandoRawg,
+    errorRawg,
     onCambiarJuegoId,
     onCambiarPcCampo,
     onCopiarJson,
@@ -23,6 +25,8 @@ export default function ContainerComponent() {
         jsonParaGemini={jsonParaGemini}
         isCopiando={isCopiando}
         mensajeCopia={mensajeCopia}
+        isCargandoRawg={isCargandoRawg}
+        errorRawg={errorRawg}
         onCambiarJuegoId={onCambiarJuegoId}
         onCambiarPcCampo={onCambiarPcCampo}
         onCopiarJson={onCopiarJson}

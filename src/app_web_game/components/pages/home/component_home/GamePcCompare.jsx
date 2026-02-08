@@ -22,6 +22,8 @@ export default function GamePcCompare({
   jsonParaGemini,
   isCopiando,
   mensajeCopia,
+  isCargandoRawg,
+  errorRawg,
   onCambiarJuegoId,
   onCambiarPcCampo,
   onCopiarJson,
@@ -32,16 +34,26 @@ export default function GamePcCompare({
         <div className="space-y-1">
           <h1 className="text-2xl font-semibold text-white">Comparador Juego vs PC</h1>
           <p className="text-sm text-white/70">
-            Datos de juego simulados (mock RAWG) + componentes de tu PC para generar un JSON listo para Gemini.
+            Datos del juego desde{" "}
+            <a
+              href="https://rawg.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-white underline underline-offset-4 hover:text-white/90"
+            >
+              RAWG.io
+            </a>{" "}
+            + componentes de tu PC para generar un JSON listo para Gemini.
           </p>
         </div>
 
         <div className="w-full md:w-[320px]">
-          <Field label="Juego (mock RAWG)">
+          <Field label="Juego (RAWG)">
             <select
               className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-sm text-white outline-none focus:border-white/30"
               value={juegoUi?.id ?? ""}
               onChange={(e) => onCambiarJuegoId(e.target.value)}
+              disabled={isCargandoRawg || listaDeJuegos.length === 0}
             >
               {listaDeJuegos.map((juego) => (
                 <option key={juego.id} value={juego.id}>
@@ -49,6 +61,8 @@ export default function GamePcCompare({
                 </option>
               ))}
             </select>
+            {errorRawg ? <p className="mt-2 text-xs text-red-300">{errorRawg}</p> : null}
+            {isCargandoRawg ? <p className="mt-2 text-xs text-white/60">Cargando datos desde RAWG…</p> : null}
           </Field>
         </div>
       </header>
