@@ -7,12 +7,12 @@ import { getStorage } from "firebase/storage";
 // Your web app's Firebase configuration
 // En producción conviene usar variables de entorno (Vite: import.meta.env.VITE_*)
 const firebaseConfig = {
-  apiKey: "AIzaSyDOzQ6juhGcJMDIx4CxvxGd5joGXnqHyQY",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "the-last-suite.firebaseapp.com",
-  projectId: "the-last-suite",
-  storageBucket: "the-last-suite.firebasestorage.app",
-  messagingSenderId: "274795975057",
-  appId: "1:274795975057:web:37124d8ac8b6f1689a0a30",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
