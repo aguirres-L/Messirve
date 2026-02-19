@@ -1,0 +1,149 @@
+.seguro-login {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(
+      1200px 600px at 20% 10%,
+      rgba(99, 102, 241, 0.16),
+      transparent 60%
+    ),
+    radial-gradient(
+      1000px 500px at 80% 0%,
+      rgba(16, 185, 129, 0.14),
+      transparent 55%
+    ),
+    linear-gradient(180deg, #0b1020, #060713);
+  color: #e6e8ff;
+}
+
+.seguro-login__card {
+  width: min(520px, 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 22px 22px 18px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+}
+
+.seguro-login__header {
+  margin-bottom: 16px;
+}
+
+.seguro-login__eyebrow {
+  margin: 0 0 6px;
+  opacity: 0.8;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.seguro-login__title {
+  margin: 0 0 6px;
+  font-size: 28px;
+  line-height: 1.15;
+}
+
+.seguro-login__subtitle {
+  margin: 0;
+  opacity: 0.85;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.seguro-login__form {
+  display: grid;
+  gap: 12px;
+}
+
+.seguro-login__label {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+  opacity: 0.92;
+}
+
+.seguro-login__input {
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.18);
+  color: #e6e8ff;
+  padding: 0 12px;
+  outline: none;
+}
+
+.seguro-login__input:focus {
+  border-color: rgba(99, 102, 241, 0.7);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.18);
+}
+
+.seguro-login__error {
+  border: 1px solid rgba(244, 63, 94, 0.35);
+  background: rgba(244, 63, 94, 0.12);
+  color: #ffd7df;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 13px;
+}
+
+.seguro-login__btn {
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: #e6e8ff;
+  cursor: pointer;
+  padding: 0 12px;
+  font-weight: 600;
+}
+
+.seguro-login__btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.seguro-login__btn--primary {
+  background: linear-gradient(90deg, #6366f1, #22c55e);
+  border-color: transparent;
+}
+
+.seguro-login__btn--ghost {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.seguro-login__help {
+  display: grid;
+  gap: 10px;
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.seguro-login__helpText {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.seguro-login__helpBtns {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.seguro-login__helpSmall {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.seguro-login__helpSmall code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 11px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: 8px;
+}
+

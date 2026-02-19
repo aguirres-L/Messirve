@@ -4,7 +4,6 @@ import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 import Aos from "aos"
 import AosAnimate from "../hooks_components/UseAOS.jsx"
-import { useNavigate } from "react-router-dom"
 
 export default function HeaderComponent() {
   // Este componente no recibe props

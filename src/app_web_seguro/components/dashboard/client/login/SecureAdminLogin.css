@@ -1,0 +1,61 @@
+.seguro-login__notice {
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  background: rgba(56, 189, 248, 0.08);
+  color: rgba(230, 232, 255, 0.92);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.seguro-login__notice strong {
+  color: #e6e8ff;
+}
+
+.seguro-login__row {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.seguro-login__row .seguro-login__input {
+  flex: 1;
+}
+
+.seguro-login__toggle {
+  width: 110px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(230, 232, 255, 0.92);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.seguro-login__toggle:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.seguro-login__success {
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  background: rgba(34, 197, 94, 0.12);
+  color: rgba(230, 255, 242, 0.92);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 13px;
+}
+
+.seguro-login__meta {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.seguro-login__actionsRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+

@@ -1,0 +1,206 @@
+/* Formulario broker: layout a pantalla completa, 2 columnas */
+.form-broker-page {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  place-items: unset;
+  min-height: 100vh;
+  padding: 24px 20px 32px;
+}
+
+.form-broker-page .seguro-login__card {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  backdrop-filter: none;
+  padding: 0;
+}
+
+.form-broker-page .seguro-login__header {
+  margin-bottom: 20px;
+}
+
+.form-broker-page .seguro-form {
+  max-width: none;
+  width: 100%;
+}
+
+.form-broker__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 32px;
+  align-items: start;
+  margin-top: 16px;
+}
+
+.form-broker__col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.form-broker__col section {
+  margin-top: 0;
+}
+
+.form-broker__actions {
+  grid-column: 1 / -1;
+  margin-top: 8px;
+}
+
+/* Toggle switch (interruptor tipo palanca) */
+.form-broker__toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.form-broker__switch {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.form-broker__switch:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.form-broker__switch[data-active="true"] {
+  background: rgba(99, 102, 241, 0.6);
+  border-color: rgba(99, 102, 241, 0.8);
+}
+
+.form-broker__switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #e6e8ff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.form-broker__switch[data-active="true"] .form-broker__switch-thumb {
+  transform: translateX(22px);
+}
+
+/* Sí / No segmentado (botones tipo radio) */
+.form-broker__sino {
+  display: flex;
+  gap: 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.18);
+  padding: 2px;
+  width: fit-content;
+}
+
+.form-broker__sino-option {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: rgba(230, 232, 255, 0.85);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.form-broker__sino-option:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #e6e8ff;
+}
+
+.form-broker__sino-option[data-selected="true"] {
+  background: rgba(99, 102, 241, 0.5);
+  color: #e6e8ff;
+}
+
+.form-broker__section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(230, 232, 255, 0.95);
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(99, 102, 241, 0.35);
+}
+
+.form-broker__section {
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.form-broker__section:last-of-type {
+  border-bottom: none;
+}
+
+.form-broker__row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 20px;
+}
+
+/* Selects con mejor diseño: altura, flecha clara y contraste */
+.form-broker-page .seguro-select {
+  min-height: 44px;
+  padding: 10px 40px 10px 14px;
+  font-size: 14px;
+  line-height: 1.4;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='rgba(230,232,255,0.7)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 18px;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.form-broker-page .seguro-select:hover:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.22);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.form-broker-page .seguro-select:focus {
+  outline: none;
+  border-color: rgba(99, 102, 241, 0.7);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.form-broker-page .seguro-select:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Opciones del select: fondo oscuro y legible al abrir (donde el navegador lo permita) */
+.form-broker-page .seguro-select option {
+  background: #1a1d2e;
+  color: #e6e8ff;
+  padding: 10px 12px;
+}
+
+@media (max-width: 900px) {
+  .form-broker__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-broker__row-2 {
+    grid-template-columns: 1fr;
+  }
+}

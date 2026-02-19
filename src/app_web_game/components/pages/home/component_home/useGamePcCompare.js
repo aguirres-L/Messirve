@@ -141,7 +141,7 @@ export function useGamePcCompare() {
       setMensajeCopia("");
       await navigator.clipboard.writeText(jsonParaGemini);
       setMensajeCopia("JSON copiado al portapapeles.");
-    } catch (error) {
+    } catch {
       setMensajeCopia("No se pudo copiar. Probá copiar manualmente desde el recuadro.");
     } finally {
       setIsCopiando(false);

@@ -26,3 +26,14 @@ src/app_web_game/clave.txt
 *.njsproj
 *.sln
 *.sw?
+
+# ---
+# Solo trabajar con `src/app_web_seguro/`
+# Nota: esto solo afecta archivos NO trackeados. Lo ya trackeado seguirá apareciendo en `git status`.
+# ---
+/*
+!.gitignore
+!src/
+src/*
+!src/app_web_seguro/
+!src/app_web_seguro/**

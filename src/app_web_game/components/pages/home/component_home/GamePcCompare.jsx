@@ -19,7 +19,6 @@ export default function GamePcCompare({
   listaDeJuegos,
   juegoUi,
   pcUsuario,
-  jsonParaGemini,
   isCopiando,
   mensajeCopia,
   isCargandoRawg,
